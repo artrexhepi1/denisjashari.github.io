@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="sq">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Denis Jashari Architecture</title>
+  <link rel="icon" type="image/png" href="images/sketch.png">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+    body { font-family: 'Inter', sans-serif; }
+    .hero-video { object-fit: cover; }
+    .project-card { transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); }
+    .project-card:hover img { transform: scale(1.08); }
+    .social-icon { transition: all 0.3s ease; }
+    .social-icon:hover { transform: scale(1.2); }
+  </style>
+</head>
+<body class="bg-black text-white overflow-x-hidden">
+
+  <!-- HEADER -->
+  <header class="fixed top-0 left-0 right-0 z-50 bg-black/85 backdrop-blur-md border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
+      <a href="#" class="flex items-center">
+        <img src="images/cif.png" alt="Denis Jashari Architecture" class="h-10 w-auto">
+      </a>
+      <nav class="hidden md:flex items-center gap-10 text-sm font-medium tracking-widest">
+        <a id="menu-home" href="#home" class="hover:text-gray-300 transition">Ballina</a>
+        <a id="menu-projects" href="#projects" class="hover:text-gray-300 transition">Projektet</a>
+        <a id="menu-about" href="#about" class="hover:text-gray-300 transition">Rreth meje</a>
+        <a id="menu-contact" href="#contact" class="hover:text-gray-300 transition">Kontakt</a>
+      </nav>
+      <div class="flex items-center gap-6">
+        <div class="flex items-center text-xs font-medium border border-white/30 rounded-full overflow-hidden">
+          <button onclick="changeLanguage('sq')" id="lang-sq" class="px-3 py-1 bg-white text-black">SQ</button>
+          <button onclick="changeLanguage('en')" id="lang-en" class="px-3 py-1 hover:bg-white/10">EN</button>
+        </div>
+        <a id="header-contact-btn" href="https://wa.me/+37745369499" target="_blank" rel="noopener noreferrer" class="px-6 py-2.5 border border-white/70 hover:bg-white hover:text-black transition rounded-full text-sm font-medium">Kontakt</a>
+        <button class="md:hidden text-2xl">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section id="home" class="relative h-screen flex items-center justify-center overflow-hidden">
+    <video autoplay loop muted playsinline class="hero-video absolute inset-0 w-full h-full object-cover">
+      <source src="images/boss.mp4" type="video/mp4">
+    </video>
+    <div class="absolute inset-0 bg-black/40"></div>
+    <div class="relative z-10 text-center px-6 max-w-5xl mx-auto">
+      <h1 class="text-6xl md:text-8xl font-light tracking-tighter leading-none mb-4">DENIS JASHARI ARCHITECTURE</h1>
+      <p id="hero-subtitle" class="text-2xl md:text-3xl font-light text-gray-200 max-w-2xl mx-auto mb-10">Arkitekturë me shpirt – hapësira që frymëzojnë jetën</p>
+      <a id="hero-button" href="#projects" class="inline-block px-10 py-4 border-2 border-white hover:bg-white hover:text-black text-lg font-medium transition rounded-full">Shiko Projektet tona</a>
+    </div>
+    <div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center text-xs tracking-widest">
+      <div class="animate-bounce">SCROLL</div>
+      <i class="fas fa-chevron-down mt-2"></i>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects" class="py-24 relative overflow-hidden" style="background-image: url('images/beki.png'); background-size: cover; background-position: center; background-attachment: fixed;">
+    <div class="absolute inset-0 bg-black/65"></div>
+    <div class="relative z-10 max-w-7xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <h2 id="projects-title" class="text-5xl font-light tracking-tight text-white">Projektet tona</h2>
+        <p id="projects-subtitle" class="mt-3 text-gray-300">Zgjedhje të fundit – 2024/2025</p>
+      </div>
+      <div id="projects-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Rendered by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- MODAL -->
+  <div id="projectModal" class="hidden fixed inset-0 bg-black/95 z-[100] flex items-center justify-center p-4">
+    <div class="max-w-5xl w-full bg-zinc-900 rounded-3xl overflow-hidden relative">
+      <button onclick="closeModal()" class="absolute top-6 right-6 text-5xl text-white hover:text-gray-400 z-10 transition">×</button>
+      <div class="flex flex-col lg:flex-row">
+        <div class="lg:w-3/5">
+          <img id="modalImage" class="w-full h-full object-contain max-h-[85vh]" alt="">
+        </div>
+        <div class="lg:w-2/5 p-10 lg:p-12 flex flex-col justify-center">
+          <h2 id="modalTitle" class="text-4xl font-light leading-none mb-6"></h2>
+          <div id="modalDesc" class="text-gray-300 text-lg leading-relaxed space-y-6"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="bg-gradient-to-b from-zinc-950 to-black pt-24 pb-12 border-t border-white/10">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-x-12 gap-y-16">
+        <div class="md:col-span-5">
+          <img src="images/cif.png" alt="Denis Jashari Architecture" class="h-9 mb-6">
+          <p class="text-lg font-light text-gray-300 max-w-md">Arkitekturë që frymëzon. Hapësira që tregojnë historinë tënde.</p>
+          <div class="mt-8 text-xs text-gray-500">Gjilan, Kosovë</div>
+        </div>
+        <div class="md:col-span-3">
+          <div id="footer-nav-title" class="uppercase text-xs tracking-widest text-gray-400 mb-6">Navigim</div>
+          <div class="space-y-3 text-sm">
+            <a href="#home" class="block hover:text-white transition">Ballina</a>
+            <a href="#projects" class="block hover:text-white transition">Projektet</a>
+            <a href="#about" class="block hover:text-white transition">Rreth meje</a>
+            <a href="#contact" class="block hover:text-white transition">Kontakt</a>
+          </div>
+        </div>
+        <div class="md:col-span-4">
+          <div id="footer-follow-title" class="uppercase text-xs tracking-widest text-gray-400 mb-6">Na ndiqni</div>
+          <div class="flex gap-6">
+            <a href="https://www.instagram.com/denisjashari_architect" target="_blank" rel="noopener noreferrer" class="social-icon text-4xl hover:text-pink-500"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.facebook.com/profile.php?id=61574876170282" target="_blank" rel="noopener noreferrer" class="social-icon text-4xl hover:text-blue-600"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.messenger.com/" target="_blank" rel="noopener noreferrer" class="social-icon text-4xl hover:text-blue-500"><i class="fab fa-facebook-messenger"></i></a>
+            <!-- WHATSAPP I RI -->
+            <a href="https://wa.me/+37745369499" target="_blank" rel="noopener noreferrer" class="social-icon text-4xl hover:text-green-500"><i class="fab fa-whatsapp"></i></a>
+          </div>
+          <p id="footer-copyright" class="mt-8 text-xs text-gray-500">© 2026 Denis Jashari Architecture.<br>Të gjitha të drejtat të rezervuara.</p>
+        </div>
+      </div>
+      <div class="mt-20 pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between text-xs text-gray-500">
+        <div id="footer-bottom">Webfaqja u prodhu nga <span class="text-white font-medium">TRA CODE</span> • Me pasion për dizajn</div>
+        <div class="mt-4 md:mt-0 flex items-center gap-1"></div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    let currentLang = 'sq';
+
+    const translations = {
+      sq: {
+        menuHome: "Ballina", menuProjects: "Projektet", menuAbout: "Rreth meje", menuContact: "Kontakt",
+        headerContact: "Kontakt",
+        heroSubtitle: "Arkitekturë me shpirt – hapësira që frymëzojnë jetën",
+        heroButton: "Shiko Projektet tona",
+        projectsTitle: "Projektet tona",
+        projectsSubtitle: "Zgjedhje të fundit – 2024/2025",
+        footerNav: "Navigim",
+        footerFollow: "Na ndiqni",
+        footerBottom: "Powered by TRA CODE"
+      },
+      en: {
+        menuHome: "Home", menuProjects: "Projects", menuAbout: "About", menuContact: "Contact",
+        headerContact: "Contact",
+        heroSubtitle: "Architecture with soul – spaces that inspire life",
+        heroButton: "View Our Projects",
+        projectsTitle: "Our Projects",
+        projectsSubtitle: "Latest Selections – 2024/2025",
+        footerNav: "Navigation",
+        footerFollow: "Follow Us",
+        footerBottom: "Website produced by TRA CODE • With passion for design"
+      }
+    };
+
+    const projectsData = [
+      { img: "images/arta.jpg", titleSq: "Villa Elegante Prishtinë", titleEn: "Elegant Villa Pristina", subtitleSq: "Prishtinë • 2025", subtitleEn: "Pristina • 2025", descSq: "<p>Vilë private luksoze me dizajn minimalist dhe pamje panoramike mbi qytet.</p><p><strong>Viti:</strong> 2025 | <strong>Lokacioni:</strong> Prishtinë</p>", descEn: "<p>Luxury private villa with minimalist design and panoramic city views.</p><p><strong>Year:</strong> 2025 | <strong>Location:</strong> Pristina</p>" },
+      { img: "images/arti.jpg", titleSq: "Apartament Modern Qendror", titleEn: "Modern Central Apartment", subtitleSq: "Prishtinë • 2024", subtitleEn: "Pristina • 2024", descSq: "<p>Apartament duplex në zemër të Prishtinës.</p><p><strong>Viti:</strong> 2024 | <strong>Sipërfaqe:</strong> 180 m²</p>", descEn: "<p>Duplex apartment in the heart of Pristina.</p><p><strong>Year:</strong> 2024 | <strong>Area:</strong> 180 m²</p>" },
+      { img: "images/artush.jpg", titleSq: "Qendër Biznesi Tirana", titleEn: "Tirana Business Center", subtitleSq: "Tiranë • 2025", subtitleEn: "Tirana • 2025", descSq: "<p>Godinë bashkëkohore me zyra dhe hapësira tregtare.</p><p><strong>Viti:</strong> 2025 | <strong>Lokacioni:</strong> Tiranë</p>", descEn: "<p>Contemporary building with offices and retail spaces.</p><p><strong>Year:</strong> 2025 | <strong>Location:</strong> Tirana</p>" },
+      { img: "images/beki.png", titleSq: "Shtëpi Fshati Natyrore", titleEn: "Natural Village House", subtitleSq: "Drenas • 2024", subtitleEn: "Drenas • 2024", descSq: "<p>Shtëpi ekologjike në harmoni me natyrën.</p><p><strong>Viti:</strong> 2024 | <strong>Lokacioni:</strong> Drenas</p>", descEn: "<p>Ecological house in perfect harmony with nature.</p><p><strong>Year:</strong> 2024 | <strong>Location:</strong> Drenas</p>" },
+      { img: "images/arta.jpg", titleSq: "Hotel Boutique Pejë", titleEn: "Peja Boutique Hotel", subtitleSq: "Pejë • 2025", subtitleEn: "Peja • 2025", descSq: "<p>Hotel me 12 dhoma në stil boutique.</p><p><strong>Viti:</strong> 2025 | <strong>Lokacioni:</strong> Pejë</p>", descEn: "<p>12-room boutique hotel with unique views.</p><p><strong>Year:</strong> 2025 | <strong>Location:</strong> Peja</p>" },
+      { img: "images/arti.jpg", titleSq: "Rezidencë Private Gjakovë", titleEn: "Private Residence Gjakova", subtitleSq: "Gjakovë • 2024", subtitleEn: "Gjakova • 2024", descSq: "<p>Rezidencë familjare me oborr të madh.</p><p><strong>Viti:</strong> 2024 | <strong>Lokacioni:</strong> Gjakovë</p>", descEn: "<p>Family residence with large courtyard.</p><p><strong>Year:</strong> 2024 | <strong>Location:</strong> Gjakova</p>" }
+    ];
+
+    function renderProjects(lang) {
+      const grid = document.getElementById('projects-grid');
+      grid.innerHTML = '';
+      projectsData.forEach((proj, index) => {
+        const cardHTML = `
+          <div onclick="openProjectModal(${index})" class="project-card group cursor-pointer relative overflow-hidden rounded-3xl aspect-video">
+            <img src="${proj.img}" class="w-full h-full object-cover transition duration-500">
+            <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 to-transparent p-6">
+              <h3 class="text-2xl font-light">${lang === 'sq' ? proj.titleSq : proj.titleEn}</h3>
+              <p class="text-sm text-gray-300">${lang === 'sq' ? proj.subtitleSq : proj.subtitleEn}</p>
+            </div>
+          </div>
+        `;
+        grid.innerHTML += cardHTML;
+      });
+    }
+
+    function openProjectModal(index) {
+      const proj = projectsData[index];
+      document.getElementById('modalImage').src = proj.img;
+      document.getElementById('modalTitle').textContent = currentLang === 'sq' ? proj.titleSq : proj.titleEn;
+      document.getElementById('modalDesc').innerHTML = currentLang === 'sq' ? proj.descSq : proj.descEn;
+      document.getElementById('projectModal').classList.remove('hidden');
+      document.getElementById('projectModal').classList.add('flex');
+    }
+
+    function closeModal() {
+      const m = document.getElementById('projectModal');
+      m.classList.add('hidden');
+      m.classList.remove('flex');
+    }
+
+    function updateUI() {
+      const t = translations[currentLang];
+      document.getElementById('menu-home').textContent = t.menuHome;
+      document.getElementById('menu-projects').textContent = t.menuProjects;
+      document.getElementById('menu-about').textContent = t.menuAbout;
+      document.getElementById('menu-contact').textContent = t.menuContact;
+      document.getElementById('header-contact-btn').textContent = t.headerContact;
+      document.getElementById('hero-subtitle').textContent = t.heroSubtitle;
+      document.getElementById('hero-button').textContent = t.heroButton;
+      document.getElementById('projects-title').textContent = t.projectsTitle;
+      document.getElementById('projects-subtitle').textContent = t.projectsSubtitle;
+      document.getElementById('footer-nav-title').textContent = t.footerNav;
+      document.getElementById('footer-follow-title').textContent = t.footerFollow;
+      document.getElementById('footer-bottom').innerHTML = t.footerBottom;
+
+      document.getElementById('lang-sq').classList.toggle('bg-white', currentLang === 'sq');
+      document.getElementById('lang-sq').classList.toggle('text-black', currentLang === 'sq');
+      document.getElementById('lang-en').classList.toggle('bg-white', currentLang === 'en');
+      document.getElementById('lang-en').classList.toggle('text-black', currentLang === 'en');
+
+      renderProjects(currentLang);
+    }
+
+    function changeLanguage(lang) {
+      currentLang = lang;
+      updateUI();
+    }
+
+    document.getElementById('projectModal').addEventListener('click', e => { if (e.target === document.getElementById('projectModal')) closeModal(); });
+    document.addEventListener('keydown', e => { if (e.key === "Escape") closeModal(); });
+
+    window.onload = () => { updateUI(); };
+  </script>
+</body>
+</html>
